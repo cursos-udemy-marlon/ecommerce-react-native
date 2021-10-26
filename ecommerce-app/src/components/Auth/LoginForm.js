@@ -18,7 +18,6 @@ const LoginForm = (props) => {
             try {
                 await loginApi(formData);
                 console.log("OK")
-                // changeForm();
             } catch (error) {
                 setLoading(false)
                 Toast.show("Error con el Login del usuario", {
