@@ -16,8 +16,9 @@ const LoginForm = (props) => {
         onSubmit: async (formData) => {
             setLoading(true)
             try {
-                await loginApi(formData);
-                console.log("OK")
+                const response = await loginApi(formData);
+                if (response.statusCode) throw new Error("Error en el usuario o la contraseña")
+                console.log(response)
             } catch (error) {
                 setLoading(false)
                 Toast.show("Error con el Login del usuario", {
