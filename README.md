@@ -1,6 +1,7 @@
 # Create App
 ```
 expo init
+rm -rf .git
 ```
 # Run App
 ```
