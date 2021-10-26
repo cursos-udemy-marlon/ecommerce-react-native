@@ -3,8 +3,6 @@ import { StyleSheet, View, Text, Image } from 'react-native';
 import logo from "../../assets/logo.png";
 import { layoutStyle } from "../styles";
 
-
-
 const Auth = () => {
     return (
         <View style={layoutStyle.container}>
