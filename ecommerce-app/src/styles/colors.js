@@ -8,4 +8,4 @@ const colors = {
     bgDark: "#16222b"
 }
 
-export default colors;
+export default colors
