@@ -6,7 +6,7 @@ import { layoutStyle } from "../styles";
 
 
 const Auth = () => {
-    const [showLogin, setShowLogin] = useState(false);
+    const [showLogin, setShowLogin] = useState(true);
     const changeForm = () => setShowLogin(!showLogin);
 
     return (
