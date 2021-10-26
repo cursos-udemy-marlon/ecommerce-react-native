@@ -1,13 +1,20 @@
-import React from 'react'
-import { StyleSheet, View, Text, Image } from 'react-native';
+import React, {useState} from 'react'
+import { StyleSheet, View, Text, Image, KeyboardAvoidingView, Platform } from 'react-native';
 import logo from "../../assets/logo.png";
+import RegisterForm from '../components/Auth/RegisterForm';
 import { layoutStyle } from "../styles";
 
+
 const Auth = () => {
+    const [showLogin, setShowLogin] = useState(false)
     return (
         <View style={layoutStyle.container}>
             <Image style={styles.logo} source={logo}/>
-            <Text>AuthScreen</Text>
+                <KeyboardAvoidingView 
+                behavior={Platform.OS === "ios" ? "padding" : "height"}
+                >
+                    {showLogin ? <Text>FormLogin</Text> : <RegisterForm/>  }
+                </KeyboardAvoidingView>
         </View>
     )
 }
