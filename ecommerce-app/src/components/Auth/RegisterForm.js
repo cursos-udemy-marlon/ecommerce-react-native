@@ -1,9 +1,10 @@
 import React from 'react'
 import { View, Text } from 'react-native'
 import { TextInput, Button } from "react-native-paper";
-import { formStyles } from "../../styles";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { registerApi } from "../../api/user";
+import { formStyles } from "../../styles";
 
 const RegisterForm = (props) => {
     const { changeForm } = props;
@@ -11,9 +12,13 @@ const RegisterForm = (props) => {
     const formik = useFormik({
         initialValues: initialValues(),
         validationSchema: Yup.object(validationSchema()),
-        onSubmit: (formData) => {
-            console.log("Registro de Usuario enviado")
-            console.log(formData)
+        onSubmit: async (formData) => {
+            try {
+                await registerApi(formData);
+                console.log("OK")
+            } catch (error) {
+                console.log(error);
+            }
         }
     })
 
