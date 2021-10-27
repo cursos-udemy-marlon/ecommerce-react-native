@@ -5,10 +5,13 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { loginApi } from "../../api/user";
 import { formStyles } from "../../styles";
-
+import useAuth from "../../hooks/useAuth";
+import Toast from "react-native-root-toast";
 const LoginForm = (props) => {
     const {changeForm} = props;
     const [loading, setLoading] = useState(false);
+    const {login} = useAuth();
+    
 
     const formik = useFormik({
         initialValues: initialValues(),
@@ -18,7 +21,8 @@ const LoginForm = (props) => {
             try {
                 const response = await loginApi(formData);
                 if (response.statusCode) throw new Error("Error en el usuario o la contraseña")
-                console.log(response)
+                login(response)
+                setLoading(false)
             } catch (error) {
                 setLoading(false)
                 Toast.show("Error con el Login del usuario", {

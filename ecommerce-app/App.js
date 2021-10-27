@@ -4,19 +4,38 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Provider as PaperProvider } from 'react-native-paper';
 import AuthScreen from './src/screens/AuthScreen';
 import AuthContext from './src/context/AuthContext';
-
+import { setTokenApi, getTokenApi } from "./src/api/token";
+import jwtDecode from "jwt-decode";
 
 export default function App() {
   const [auth, setAuth] = useState(undefined);
   
   useEffect(() => {
-    setAuth(null);
+    (async () => {
+        const token = await getTokenApi();
+        if(token) {
+          setAuth({
+            token,
+            idUser: jwtDecode(token).id
+          })
+        } else {
+          setAuth(null);
+        }
+    })()
   }, []);
+
+  const login = (user) => {
+    setTokenApi(user.jwt);
+    setAuth({
+      token: user.jwt,
+      idUser: user.user.id
+    })
+  }
 
   const authData = useMemo(
     () => ({
         auth,
-        login: null,
+        login,
         logout: null,
     }),
     [auth]
