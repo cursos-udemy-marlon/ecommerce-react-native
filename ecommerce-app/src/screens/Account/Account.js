@@ -5,7 +5,8 @@ import Search from "../../components/Search"
 import StatusBar from '../../components/StatusBar'
 import useAuth from "../../hooks/useAuth";
 import { getMeApi } from "../../api/user";
-import ScreenLoading from "../../components/ScreenLoading"
+import ScreenLoading from "../../components/ScreenLoading";
+import UserInfo from "../../components/Account/UserInfo";
 import colors from '../../styles/colors'
 
 const Account = () => {
@@ -37,7 +38,7 @@ const Account = () => {
                 <Search/>
                 <ScrollView>
                     
-                    <Text>Estamos en mi cuenta</Text>
+                    <UserInfo user={user}/>
                 </ScrollView>
             </> )
             }
