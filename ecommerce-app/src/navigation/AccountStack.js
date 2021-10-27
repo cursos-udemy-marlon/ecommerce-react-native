@@ -3,6 +3,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { View, Text } from 'react-native'
 import Account from "../screens/Account/Account";
 import ChangeName from "../screens/Account/ChangeName";
+import ChangeEmail from "../screens/Account/ChangeEmail";
 import colors from '../styles/colors';
 
 const Stack = createStackNavigator();
@@ -30,6 +31,14 @@ const AccountStack = () => {
                 component={ChangeName}
                 options={{
                     title: "Cambiar Nombre y Apellidos"
+                }}
+            />
+
+            <Stack.Screen
+                name="change-email"
+                component={ChangeEmail}
+                options={{
+                    title: "Cambiar Email"
                 }}
             />
         </Stack.Navigator>

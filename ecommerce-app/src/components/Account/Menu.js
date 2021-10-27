@@ -41,7 +41,7 @@ const Menu = () => {
                     title="Cambiar Email"
                     description="Cambia el email de tu usuario"
                     left={(props) => <List.Icon { ...props } icon="at" />}
-                    onPress={() => console.log("cambio")}
+                    onPress={() => navigation.navigate("change-email")}
                 />
 
                 <List.Item  
