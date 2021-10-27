@@ -1,4 +1,3 @@
-import { StatusBar } from 'expo-status-bar';
 import React, {useState, useEffect,useMemo} from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import { Provider as PaperProvider} from 'react-native-paper';
@@ -6,6 +5,7 @@ import AuthScreen from './src/screens/AuthScreen';
 import AuthContext from './src/context/AuthContext';
 import { setTokenApi, getTokenApi, removeTokenApi } from "./src/api/token";
 import jwtDecode from "jwt-decode";
+import AppNavigation from './src/navigation/AppNavigation';
 
 export default function App() {
   const [auth, setAuth] = useState(undefined);
@@ -54,10 +54,7 @@ export default function App() {
     <AuthContext.Provider value={authData}>
       <PaperProvider>
         { auth ? 
-              <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                <Text>Zona de usuarios</Text>
-                <Button title="cerrar cesion" onPress={logout}/>
-              </View>
+              <AppNavigation/>
               : <AuthScreen/> }
       </PaperProvider>
     </AuthContext.Provider>
