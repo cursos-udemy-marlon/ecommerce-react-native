@@ -1,10 +1,31 @@
 import React from 'react'
-import { StyleSheet, View, Text } from 'react-native'
+import { StyleSheet, Alert } from 'react-native'
 import { List } from "react-native-paper"
 import { useNavigation} from "@react-navigation/native";
+import useAuth from "../../hooks/useAuth";
 
 const Menu = () => {
     const navigation = useNavigation();
+    const { logout } = useAuth();
+
+    const logoutAccount = () => {
+        Alert.alert(
+            "Cerrar sessión",
+            "Estas seguro que quieres cerrar sesión ?",
+            [
+                {
+                    text: "NO"
+                },
+                {
+                    text: "SI",
+                    onPress: () => logout()
+                }
+            ], {
+                cancelable: false
+            }
+        )
+    }
+
     return (
         <>
         <List.Section>
@@ -58,14 +79,14 @@ const Menu = () => {
                     description="Listado de los productos que deseas"
                     left={(props) => <List.Icon { ...props } 
                     icon="heart" />}
-                    onPress={() => navigation.navigate("favorites")}
+                    onPress={() => navigation.navigate("favo")}
                 />
                 <List.Item  
                     title="Cerrar seción"
                     description="Adios"
                     left={(props) => <List.Icon { ...props } 
                     icon="logout" />}
-                    onPress={() => console.log("cambio")}
+                    onPress={logoutAccount}
                 />
         </List.Section>
         </>
