@@ -1,11 +1,11 @@
 import React, {useState, useCallback} from 'react'
-import { StyleSheet, ScrollView, Text } from 'react-native'
+import { ScrollView, Text } from 'react-native'
 import { useFocusEffect } from "@react-navigation/native";
 import Search from "../../components/Search"
 import StatusBar from '../../components/StatusBar'
 import useAuth from "../../hooks/useAuth";
 import { getMeApi } from "../../api/user";
-
+import ScreenLoading from "../../components/ScreenLoading"
 import colors from '../../styles/colors'
 
 const Account = () => {
@@ -23,20 +23,27 @@ const Account = () => {
         }, [])
     )
 
-
+   
 
     return (
         <>
             <StatusBar  backgroundColor={colors.bgDark}
                 barStyle="light-content"
             />
-            <Search/>
-            <ScrollView>
-                
-                <Text>Estamos en mi cuenta</Text>
-            </ScrollView>
+
+            {!user ? (<ScreenLoading  size="large" text="Hola..." color="#000"/> )
+            : (
+            <>
+                <Search/>
+                <ScrollView>
+                    
+                    <Text>Estamos en mi cuenta</Text>
+                </ScrollView>
+            </> )
+            }
+            
         </>
-    )
+    );
 }
 
 
