@@ -18,7 +18,7 @@ const Menu = () => {
                 },
                 {
                     text: "SI",
-                    onPress: () => logout()
+                    onPress: () => logout
                 }
             ], {
                 cancelable: false
@@ -34,7 +34,7 @@ const Menu = () => {
                     title="Cambiar Nombre"
                     description="Cambia el nombre de tu usuario"
                     left={(props) => <List.Icon { ...props } icon="face" />}
-                    onPress={() => console.log("cambio")}
+                    onPress={() => navigation.navigate("change-name")}
                 />
 
                 <List.Item  
