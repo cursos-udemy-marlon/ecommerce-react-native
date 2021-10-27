@@ -4,7 +4,9 @@ import { createMaterialBottomTabNavigator } from "@react-navigation/material-bot
 import Home from "../screens/Home";
 import Favorites from "../screens/Favorites";
 import Cart from "../screens/Cart";
-import Account from "../screens/Account"
+
+import AccountStack from './AccountStack';
+
 import AwesomeIcon from "react-native-vector-icons/FontAwesome";
 import { StyleSheet } from "react-native";
 import colors from "../styles/colors";
@@ -47,7 +49,7 @@ const AppNavigation = () => {
 
                 <Tab.Screen 
                     name="account"
-                    component={Account}
+                    component={AccountStack}
                     options={{ 
                         title: 'Mi cuenta'
                     }}
