@@ -7,6 +7,7 @@ import useAuth from "../../hooks/useAuth";
 import { getMeApi } from "../../api/user";
 import ScreenLoading from "../../components/ScreenLoading";
 import UserInfo from "../../components/Account/UserInfo";
+import Menu from '../../components/Account/Menu';
 import colors from '../../styles/colors'
 
 const Account = () => {
@@ -39,6 +40,7 @@ const Account = () => {
                 <ScrollView>
                     
                     <UserInfo user={user}/>
+                    <Menu/>
                 </ScrollView>
             </> )
             }
