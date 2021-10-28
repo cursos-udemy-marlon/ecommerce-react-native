@@ -77,7 +77,7 @@ export async function getAddressApi(auth, idAddress) {
 
 export async function updateAddressApi(auth, address) {
   try {
-    const url = `${API_URL}/addresses/${address._id}`;
+    const url = `${API_URL}/addresses/${address.id}`;
     const params = {
       method: "PUT",
       headers: {

@@ -5,7 +5,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { formStyles } from "../../styles";
 import { useFormik } from 'formik';
 import * as Yup from "yup";
-import { addAddressApi, getAddressesApi } from "../../api/address";
+import { addAddressApi, getAddressApi, updateAddressApi } from "../../api/address";
 import Toast from "react-native-root-toast";
 import useAuth from "../../hooks/useAuth";
 import { useFocusEffect, useNavigation } from "@react-navigation/native"
@@ -18,12 +18,23 @@ const AddAddress = (props) => {
     const [loading, setLoading] = useState(false);
     const { auth } = useAuth();
     const navigation = useNavigation();
+    const [newAddress, setNewAddress] = useState(true);
 
     useEffect(() => {
         (async ()=>{
             if(params?.id) {
-                const response = await getAddressesApi(auth, params.id);
-                console.log(response);
+                setNewAddress(false)
+                navigation.setOptions({title: "Actualizar Dirección"})
+                const response = await getAddressApi(auth, params.id);
+                await formik.setFieldValue("id", response.id);
+                await formik.setFieldValue("title", response.title);
+                await formik.setFieldValue("name_lastname", response.name_lastname);
+                await formik.setFieldValue("address", response.address);
+                await formik.setFieldValue("postal_code", response.postal_code);
+                await formik.setFieldValue("city", response.city);
+                await formik.setFieldValue("country", response.country);
+                await formik.setFieldValue("phone", response.phone);
+                await formik.setFieldValue("state", response.state);
             }
         })()
     }, [params])
@@ -34,8 +45,8 @@ const AddAddress = (props) => {
         onSubmit: async (formData) => {
             setLoading(true);
             try {
-                console.log(formData)
-                await addAddressApi(auth, formData)
+                if(newAddress) await addAddressApi(auth, formData)
+                else await updateAddressApi(auth, formData)
                 navigation.goBack();
             } catch (error) {
                 Toast.show("Error al actualizar los datos",{
@@ -117,7 +128,9 @@ const AddAddress = (props) => {
             <Button mode="contained"
                     onPress={formik.handleSubmit}
                     loading={loading}
-                    style={[formStyles.btnSucces, styles.btnSucces]}>Crear Dirección</Button> 
+                    style={[formStyles.btnSucces, styles.btnSucces]}>
+                        {newAddress ? "Crear dirección " : "Actualizar dirección"}
+                        </Button> 
             </View>    
         </KeyboardAwareScrollView>
     )
