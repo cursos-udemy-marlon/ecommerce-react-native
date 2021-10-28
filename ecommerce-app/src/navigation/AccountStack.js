@@ -4,6 +4,9 @@ import { View, Text } from 'react-native'
 import Account from "../screens/Account/Account";
 import ChangeName from "../screens/Account/ChangeName";
 import ChangeEmail from "../screens/Account/ChangeEmail";
+import ChangeUsername from "../screens/Account/ChangeUsername";
+import ChangePassword from "../screens/Account/ChangePassword";
+import Adresses from "../screens/Adresses";
 import colors from '../styles/colors';
 
 const Stack = createStackNavigator();
@@ -41,6 +44,30 @@ const AccountStack = () => {
                     title: "Cambiar Email"
                 }}
             />
+
+            <Stack.Screen
+                name="change-username"
+                component={ChangeUsername}
+                options={{
+                    title: "Cambiar Nombre de Usuario"
+                }}
+            />
+
+        <Stack.Screen
+                name="change-password"
+                component={ChangePassword}
+                options={{
+                    title: "Cambiar Contraseña"
+                }}
+            /> 
+
+        <Stack.Screen
+                name="adresses"
+                component={Adresses}
+                options={{
+                    title: "Mis Direcciones"
+                }}
+            />           
         </Stack.Navigator>
     )
 }

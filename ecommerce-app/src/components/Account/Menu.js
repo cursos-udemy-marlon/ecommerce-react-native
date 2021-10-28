@@ -48,21 +48,21 @@ const Menu = () => {
                     title="Cambiar username"
                     description="Cambia el username de tu usuario"
                     left={(props) => <List.Icon { ...props } icon="sim" />}
-                    onPress={() => console.log("cambio")}
+                    onPress={() => navigation.navigate("change-username")}
                 />
 
                 <List.Item  
                     title="Cambiar contraseña"
                     description="Cambia la contraseña de tu usuario"
                     left={(props) => <List.Icon { ...props } icon="key" />}
-                    onPress={() => console.log("cambio")}
+                    onPress={() => navigation.navigate("change-password")}
                 />
 
             <List.Item  
                     title="Mis direcciones"
                     description="Administras tus direcciones de envio"
                     left={(props) => <List.Icon { ...props } icon="map" />}
-                    onPress={() => console.log("cambio")}
+                    onPress={() => navigation.navigate("adresses")}
                 />
         </List.Section>
         <List.Section>
