@@ -1,19 +1,32 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { StyleSheet, View, Text } from 'react-native';
 import { TextInput, Button } from "react-native-paper";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { formStyles } from "../../styles";
 import { useFormik } from 'formik';
 import * as Yup from "yup";
-import { addAddressApi } from "../../api/address";
+import { addAddressApi, getAddressesApi } from "../../api/address";
 import Toast from "react-native-root-toast";
 import useAuth from "../../hooks/useAuth";
 import { useFocusEffect, useNavigation } from "@react-navigation/native"
 
-const AddAddress = () => {
+
+
+const AddAddress = (props) => {
+    const { route: { params }, } = props;
+    
     const [loading, setLoading] = useState(false);
     const { auth } = useAuth();
     const navigation = useNavigation();
+
+    useEffect(() => {
+        (async ()=>{
+            if(params?.id) {
+                const response = await getAddressesApi(auth, params.id);
+                console.log(response);
+            }
+        })()
+    }, [params])
     
     const formik = useFormik({
         initialValues: initialValues(),

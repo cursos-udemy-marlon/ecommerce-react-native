@@ -13,15 +13,17 @@ const Adresses = () => {
     const { auth } = useAuth();
     const [addresses, setAddresses] = useState(null);
     const navigation = useNavigation();
+    const [reloadAddress, setReloadAddress] = useState(false);
 
     useFocusEffect(
         useCallback(()=>{
+            setAddresses(null);
             ( async ()=>{
                 const response = await getAddressesApi(auth);
                 setAddresses(response)
-                console.log(addresses);
+                setReloadAddress(false)
             })()
-        }, [])
+        }, [reloadAddress])
     )
 
 
@@ -48,7 +50,7 @@ const Adresses = () => {
             ) : size(addresses) === 0 ? (
                 <Text style={styles.noAddressText}>Crea tu primera dirección</Text>
             ) : (
-                <AddressList addresses={addresses}/>
+                <AddressList addresses={addresses} setReloadAddress={setReloadAddress}/>
             )}
 
         </ScrollView>
