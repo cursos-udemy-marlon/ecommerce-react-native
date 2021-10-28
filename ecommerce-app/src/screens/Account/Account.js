@@ -20,7 +20,6 @@ const Account = () => {
             ( async ()=>{
                 const response = await getMeApi(auth.token);
                 setUser(response)
-                console.log(response);
             })()
         }, [])
     )

@@ -7,18 +7,19 @@ import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { getAddressesApi } from "../../api/address";
 import useAuth from "../../hooks/useAuth";
 import { size } from "lodash";
+import AddressList from '../../components/Address/AddressList';
 
 const Adresses = () => {
     const { auth } = useAuth();
-    const [adresses, setAdresses] = useState(null);
+    const [addresses, setAddresses] = useState(null);
     const navigation = useNavigation();
 
     useFocusEffect(
         useCallback(()=>{
             ( async ()=>{
                 const response = await getAddressesApi(auth);
-                setAdresses(response)
-                console.log(response);
+                setAddresses(response)
+                console.log(addresses);
             })()
         }, [])
     )
@@ -39,15 +40,15 @@ const Adresses = () => {
                 />
             </View>
             </TouchableWithoutFeedback>
-            {!adresses ? (
+            {!addresses ? (
                 <ActivityIndicator
                     size="large"
                     style={styles.loading}
                     />
-            ) : size(adresses) === 0 ? (
+            ) : size(addresses) === 0 ? (
                 <Text style={styles.noAddressText}>Crea tu primera dirección</Text>
             ) : (
-                <Text>Listadod de direcciones</Text>
+                <AddressList addresses={addresses}/>
             )}
 
         </ScrollView>
