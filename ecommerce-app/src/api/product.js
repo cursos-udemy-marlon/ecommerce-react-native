@@ -26,7 +26,7 @@ export async function getProductApi(id) {
 
 export async function getLastProuctsApi(limit = 30) {
   try {
-    const url = `${API_URL}/products?_limit=${limit}&_sort=createdAt:DESC`;
+    const url = `${API_URL}/products?_limit=${limit}&_sort=created_at:DESC`;
     const response = await fetch(url);
     const result = await response.json();
     return result;

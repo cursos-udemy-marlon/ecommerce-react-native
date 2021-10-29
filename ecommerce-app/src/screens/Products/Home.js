@@ -3,19 +3,13 @@ import { StyleSheet, View, Text, ScrollView } from 'react-native';
 import StatusBar from "../../components/StatusBar";
 import Search from "../../components/Search";
 import NewProducts from '../../components/Home/NewProducts';
-import { getProductApi  } from "../../api/product";
 import colors from "../../styles/colors";
 
 
 const Home = () => {
-    const [products, setProducts] = useState(null)
+    
 
-    useEffect(() => {
-        (async () => {
-            const response = await getProductApi(2);
-            console.log(response)
-        })()
-    }, [])
+    
 
     return (
         <>
