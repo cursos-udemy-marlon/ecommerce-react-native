@@ -36,7 +36,7 @@ export default function Banners() {
         />
       </TouchableWithoutFeedback>
     );
-  };
+  };r
 
   const goToProduct = (id) => {
     navigation.push("product", { idProduct: id });
