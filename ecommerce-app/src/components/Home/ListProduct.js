@@ -2,14 +2,21 @@ import React from 'react'
 import { StyleSheet, View, Text, Image, TouchableWithoutFeedback } from 'react-native'
 import {map} from "lodash";
 import { API_URL } from "../../utils/constants"
+import { useNavigation } from "@react-navigation/native"
 
 const ListProduct = (props) => {
     const { products } = props;
+    const navigation = useNavigation();
+
+const goToProduct = (id) => {
+    navigation.push("product", {idProduct: id})
+}    
     
     return (
         <View style={styles.container}>
             {map(products, (product) =>(
-                <TouchableWithoutFeedback key={product.id} onPress={()=>console.log("ir")}>
+                <TouchableWithoutFeedback key={product.id} 
+                        onPress={()=>goToProduct(product.id)}>
                     <View style={styles.containerProduct}>
                         <View style={styles.product}>
                        

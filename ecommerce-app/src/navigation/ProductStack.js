@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { createStackNavigator } from "@react-navigation/stack";
 import Home from '../screens/Products/Home';
+import Product from '../screens/Products/Product';
 import colors from "../styles/colors";
 
 const Stack = createStackNavigator()
@@ -18,6 +19,12 @@ const ProductStack = () => {
             <Stack.Screen
                 name="home"
                 component={Home}
+                options={{headerShown: false}}
+            />
+
+            <Stack.Screen
+                name="product"
+                component={Product}
                 options={{headerShown: false}}
             />
         </Stack.Navigator>
