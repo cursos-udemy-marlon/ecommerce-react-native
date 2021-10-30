@@ -7,6 +7,8 @@ import ScreenLoading from "../../components/ScreenLoading";
 import CarouselImage from '../../components/Product/CarouselImage';
 import Price from '../../components/Product/Price';
 import Quantity from '../../components/Product/Quantity';
+import Buy from "../../components/Product/Buy";
+import Favorite from "../../components/Product/Favorite";
 
 import colors from "../../styles/colors";
 
@@ -46,6 +48,8 @@ const Product = (props) => {
                     discount={product.discount}
                     />
                  <Quantity  quantity={quantity} setQuantity={setQuantity}/>
+                <Buy product={product} quantity={quantity}/>
+                <Favorite product={product} />
             </View>
         </ScrollView>
         )}
